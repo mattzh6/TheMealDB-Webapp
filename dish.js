@@ -55,6 +55,13 @@ $(document).ready(function () {
             $('#thirdCount').text(sorted_ingredients[2][1]);
         } else {
             $('#errorMessage').text("Dish does not exist in database. Please enter another dish.");
+            $('#firstIngredient').text("____");
+            $('#secondIngredient').text("____");
+            $('#thirdIngredient').text("____");
+
+            $('#firstCount').text("__");
+            $('#secondCount').text("__");
+            $('#thirdCount').text("__");
         }
 
         
