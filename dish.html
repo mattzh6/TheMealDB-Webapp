@@ -17,11 +17,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
-              <a class="nav-link" href="dish.html">Find Ingredients</a>
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="dish.html">Find Ingredients<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="ingredients.html">Find Dishes</a>
@@ -30,36 +30,31 @@
         </div>
     </nav>
 
-    <h1 class="text-center">Welcome to Meal DB App</h1>
-    <p class="text-center">Our website allows you to</p>
+    <h1 class="text-center">Find Ingredients</h1>
+    <!-- Search form -->
+    <!-- <input class="form-control" id="textFilter" type="text" placeholder="Search" aria-label="Search" onkeyup="findDishes()"> -->
 
-
-    <li class="text-center">1) Type in a dish name to find top 3 most commonly used ingredients</li>
-    <li class="text-center">2) Type in ingredients to find a dish that uses those ingredients</li>
-
-
-    <br>
-
-    <p class="text-center">Here's some food pictures!</p>
-
-    <div id="carouselExampleSlidesOnly" class="carousel slide " data-ride="carousel" data-interval="2000">
-        <div class="carousel-inner" role="listbox" style=" width:100%; height: 500px !important;">
-            <div class="carousel-item active">
-            <img class="d-block w-100" src="steak.jpg" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="chicken.jpg" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="salmon.jpg" alt="Third slide">
-          </div>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Enter dish name to find ingredients" aria-label="Recipient's username" aria-describedby="basic-addon2" id="dishInput">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" id="findDishes">Search</button>
         </div>
     </div>
+
+    <p class="text-center text-danger"><span id="errorMessage"></span></p>
+
+    <ul class="list-group">
+        <li class="list-group-item">#1 Ingredient: <span id="firstIngredient">____</span> is used in <span id="firstCount">__</span> dishes.</li>
+        <li class="list-group-item">#2 Ingredient: <span id="secondIngredient">____</span> is used in <span id="secondCount">__</span> dishes.</li>
+        <li class="list-group-item">#3 Ingredient: <span id="thirdIngredient">____</span> is used in <span id="thirdCount">__</span> dishes.</li>
+    </ul>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-  </body>
+    <script src="dish.js"></script>
+</body>
 </html>
