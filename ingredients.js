@@ -4,7 +4,6 @@ $(document).ready(function () {
     $("#findIngredients").click(function () {
         $('#errorMessage').text("");
         $('#input_message').text("______");
-        // var found_meals = 
         // Collect input data and making URLs
         var input = document.getElementById("ingredientInput").value;
         var ingredient_URLs = [];
