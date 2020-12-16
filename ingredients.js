@@ -3,7 +3,7 @@ var URL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 $(document).ready(function () {
     $("#findIngredients").click(function () {
         $('#errorMessage').text("");
-        $('#input_message').text("");
+        $('#input_message').text("______");
         // var found_meals = 
         // Collect input data and making URLs
         var input = document.getElementById("ingredientInput").value;
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 
             // Outputting information to HTML
-            var output = "Dishes that use ";
+            var output = "";
             for (var i = 0; i < input_split.length; i++) {
                 if (i == input_split.length - 1) {
                     output += input_split[i];
@@ -63,9 +63,8 @@ $(document).ready(function () {
             });
         } else {
             $('#errorMessage').text("No dishes use all ingredients inputted. Please enter new set of ingredients.");
+            $('#dish_list').empty();
         }
         
     });
 });
-
-
