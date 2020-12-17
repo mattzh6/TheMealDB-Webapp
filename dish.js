@@ -33,6 +33,10 @@ $(document).ready(function () {
                 }
             }
         
+            var data_array = [];
+            for (var ingredient in ingredients) {
+                data_array.push({"ingredient": ingredient, "count": ingredients[ingredient]});
+            }
 
             var sorted_ingredients = [];
             for (var ingredient in ingredients) {
@@ -54,6 +58,23 @@ $(document).ready(function () {
             $('#firstCount').text(sorted_ingredients[0][1]);
             $('#secondCount').text(sorted_ingredients[1][1]);
             $('#thirdCount').text(sorted_ingredients[2][1]);
+
+            var vlSpec = {
+                $schema: "https://vega.github.io/schema/vega-lite/v4.0.0-beta.8.json",
+                data: {values: data_array
+                  },
+                  mark: 'bar',
+                  encoding: {
+                    x: {field: "ingredient", type: 'ordinal', title: ""},
+                    y: {field: "count", type: 'quantitative'},
+                    color: {
+                        field: "ingredient",
+                        type: "ordinal"
+                    }
+                  }
+            }
+            vegaEmbed("#vis", vlSpec);
+            
         } else {
             $('#errorMessage').text("Dish does not exist in database. Please enter another dish.");
             $('#firstIngredient').text("____");
