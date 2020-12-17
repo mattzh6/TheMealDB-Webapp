@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#findDishes").click(function () {
         $('#errorMessage').text("");
         var input = document.getElementById("dishInput").value;
+        input = input.replace(" ", "%20");
         var input_URL = URL + input;
         var dishes;
 
