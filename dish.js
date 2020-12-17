@@ -14,7 +14,7 @@ $(document).ready(function () {
         xhReq.send(null);
         var dishes = JSON.parse(xhReq.responseText);
         dishes = dishes["meals"];
-        if (dishes) {
+        if (dishes) { // Make sure that we don't have a null value when showing the results
             var ingredients = {}
             for (var i = 0; i < dishes.length; i++) {
                 for (var key of Object.keys(dishes[i])) {
@@ -34,10 +34,6 @@ $(document).ready(function () {
             }
         
             // Sorting the ingredients by frequency
-            var data_array = [];
-            for (var ingredient in ingredients) {
-                data_array.push({"ingredient": ingredient, "count": ingredients[ingredient]});
-            }
 
             var sorted_ingredients = [];
             for (var ingredient in ingredients) {
@@ -48,27 +44,34 @@ $(document).ready(function () {
                 return b[1] - a[1];
             });
 
+            // Tags to ensure that the document writes however many top ingredients actually exist
+            var ingredient_tags = ['#firstIngredient', '#secondIngredient', '#thirdIngredient'];
+            var count_tags = ['#firstCount','#secondCount','#thirdCount'];
+
+            var data_array = [] // Array for the top 3 ingredients over all dishes used to visualize the results
             for (var i = 0; i < 3; i++) {
-                console.log(sorted_ingredients[i]);
+                data_array.push({"ingredient": sorted_ingredients[i][0], "count": sorted_ingredients[i][1]});
             }
 
-            // Output text fields
-            $('#firstIngredient').text(sorted_ingredients[0][0]);
-            $('#secondIngredient').text(sorted_ingredients[1][0]);
-            $('#thirdIngredient').text(sorted_ingredients[2][0]);
-
-            $('#firstCount').text(sorted_ingredients[0][1]);
-            $('#secondCount').text(sorted_ingredients[1][1]);
-            $('#thirdCount').text(sorted_ingredients[2][1]);
+            for (var i = 0; i < data_array.length; i++) {
+                $(ingredient_tags[i]).text(sorted_ingredients[i][0]);
+                $(count_tags[i]).text(sorted_ingredients[i][1]);
+            }
 
             var vlSpec = {
                 $schema: "https://vega.github.io/schema/vega-lite/v4.0.0-beta.8.json",
+                width: 450,
+                height: 450,
+                autosize: {
+                    "type": "fit",
+                    "contains": "padding"
+                  },
                 data: {values: data_array
                   },
                   mark: 'bar',
                   encoding: {
-                    x: {field: "ingredient", type: 'ordinal', title: ""},
-                    y: {field: "count", type: 'quantitative'},
+                    x: {field: "ingredient", type: 'ordinal', title: "Top 3 ingredients used"},
+                    y: {field: "count", type: 'quantitative', title: "Occurence of each dish"},
                     color: {
                         field: "ingredient",
                         type: "ordinal"
