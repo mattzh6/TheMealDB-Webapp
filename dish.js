@@ -62,6 +62,7 @@ $(document).ready(function () {
                 $schema: "https://vega.github.io/schema/vega-lite/v4.0.0-beta.8.json",
                 width: 450,
                 height: 450,
+                background: "white",
                 autosize: {
                     "type": "fit",
                     "contains": "padding"
@@ -70,11 +71,11 @@ $(document).ready(function () {
                   },
                   mark: 'bar',
                   encoding: {
-                    x: {field: "ingredient", type: 'ordinal', title: "Top 3 ingredients used"},
                     y: {field: "count", type: 'quantitative', title: "Occurence of each dish"},
+                    x: {field: "ingredient", type: 'nominal', title: "Top 3 ingredients used"},
                     color: {
                         field: "ingredient",
-                        type: "ordinal"
+                        type: "nominal",
                     }
                   }
             }
