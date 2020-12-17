@@ -12,7 +12,9 @@ $(document).ready(function () {
         var ingredient_URLs = [];
         var input_split = input.split(" ");
         for (var i = 0; i < input_split.length; i++) {
-            ingredient_URLs.push(URL + input_split[i]);
+            if (input_split[i] != "") { // Make sure that the current input token is not a space
+                ingredient_URLs.push(URL + input_split[i]);
+            }
         }
 
         // Get meals from API
@@ -47,12 +49,14 @@ $(document).ready(function () {
                 // Outputting information to HTML
                 var output = "";
                 for (var i = 0; i < input_split.length; i++) {
-                    if (i == input_split.length - 1) {
-                        output += input_split[i];
-                        break
-                    }
-                    var temp = input_split[i] + " and "
-                    output += temp;
+                    if (input_split[i] != "") { // Make sure we get non-empty strings
+                        if (i == input_split.length - 1) {
+                            output += input_split[i];
+                            break
+                        }
+                        var temp = input_split[i] + " and "
+                        output += temp;
+                    }   
                 }
                 output += ":";
                 $('#input_message').text(output);
