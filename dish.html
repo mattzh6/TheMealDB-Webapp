@@ -45,22 +45,27 @@
     <!-- Search form -->
     <!-- <input class="form-control" id="textFilter" type="text" placeholder="Search" aria-label="Search" onkeyup="findDishes()"> -->
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Enter dish name to find ingredients (e.g. arrabiata, chicken curry)" aria-label="Recipient's username" id="dishInput">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="findDishes">Search</button>
-        </div>
-    </div>
+    
 
    
 
     <p class="text-center text-danger"><span id="errorMessage"></span></p>
     <div class = "container">
+      <div class = "row"> 
+        <div class = "col-md-8 mx-auto">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter dish name to find ingredients (e.g. arrabiata, chicken curry)" aria-label="Input a dish name" id="dishInput">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="findDishes">Search</button>
+            </div>
+         </div>
+        </div>
+      </div>
       <div class = "row">
         <div class = "col-md-8 mx-auto" id = "vis"></div>
       </div>
       <div class = "row">
-        <div class = "col-md-8 mx-auto" id = "vis">
+        <div class = "col-md-8 mx-auto">
           <ul class="list-group">
             <li class="list-group-item">#1 Ingredient: <span id="firstIngredient">____</span> is used in <span id="firstCount">__</span> dishes.</li>
             <li class="list-group-item">#2 Ingredient: <span id="secondIngredient">____</span> is used in <span id="secondCount">__</span> dishes.</li>
