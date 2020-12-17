@@ -34,34 +34,38 @@ $(document).ready(function () {
             total_meals.push(meal_names);
         }
 
+
         if (total_meals.length > 0 && !meal_invalid) {
+            // Outputting information to HTML
             // Find Common Meals
             var result = total_meals.shift().filter(function(v) {
                 return total_meals.every(function(a) {
                     return a.indexOf(v) !== -1;
                 });
             });
-
-
-            // Outputting information to HTML
-            var output = "";
-            for (var i = 0; i < input_split.length; i++) {
-                if (i == input_split.length - 1) {
-                    output += input_split[i];
-                    break
+            if (result.length > 0) {
+                var output = "";
+                for (var i = 0; i < input_split.length; i++) {
+                    if (i == input_split.length - 1) {
+                        output += input_split[i];
+                        break
+                    }
+                    var temp = input_split[i] + " and "
+                    output += temp;
                 }
-                var temp = input_split[i] + " and "
-                output += temp;
+                output += ":";
+                $('#input_message').text(output);
+
+                $(document).ready(function() {
+                    for (var i = 0; i < result.length; i++) {
+                        var output = '<li class="list-group-item">' + result[i] + '</li>';
+                        $("#dish_list").append(output);
+                    }
+                });
+            } else {
+                $('#errorMessage').text("No dishes use all ingredients inputted. Please enter new set of ingredients.");
+                $('#dish_list').empty();
             }
-            output += ":";
-            $('#input_message').text(output);
-
-            $(document).ready(function() {
-                for (var i = 0; i < result.length; i++) {
-                    var output = '<li class="list-group-item">' + result[i] + '</li>';
-                    $("#dish_list").append(output);
-                }
-            });
         } else {
             $('#errorMessage').text("No dishes use all ingredients inputted. Please enter new set of ingredients.");
             $('#dish_list').empty();
