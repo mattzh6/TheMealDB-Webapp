@@ -8,6 +8,7 @@ $(document).ready(function () {
         var input_URL = URL + input;
         var dishes;
 
+        // Collecting ingredients of dish name from API
         var xhReq = new XMLHttpRequest();
         xhReq.open("GET", input_URL, false);
         xhReq.send(null);
@@ -15,7 +16,6 @@ $(document).ready(function () {
         dishes = dishes["meals"];
         if (dishes) {
             var ingredients = {}
-
             for (var i = 0; i < dishes.length; i++) {
                 for (var key of Object.keys(dishes[i])) {
                     var key_string = key;
@@ -33,6 +33,7 @@ $(document).ready(function () {
                 }
             }
         
+            // Sorting the ingredients by frequency
             var data_array = [];
             for (var ingredient in ingredients) {
                 data_array.push({"ingredient": ingredient, "count": ingredients[ingredient]});
@@ -51,6 +52,7 @@ $(document).ready(function () {
                 console.log(sorted_ingredients[i]);
             }
 
+            // Output text fields
             $('#firstIngredient').text(sorted_ingredients[0][0]);
             $('#secondIngredient').text(sorted_ingredients[1][0]);
             $('#thirdIngredient').text(sorted_ingredients[2][0]);
@@ -76,6 +78,7 @@ $(document).ready(function () {
             vegaEmbed("#vis", vlSpec);
             
         } else {
+            // Display error message if dish does not exist in database
             $('#errorMessage').text("Dish does not exist in database. Please enter another dish.");
             $('#firstIngredient').text("____");
             $('#secondIngredient').text("____");

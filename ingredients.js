@@ -2,9 +2,11 @@ var URL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=";
 
 $(document).ready(function () {
     $("#findIngredients").click(function () {
+        // Reset output values
         $('#errorMessage').text("");
         $('#input_message').text("______");
         $('#dish_list').empty();
+
         // Collect input data and making URLs
         var input = document.getElementById("ingredientInput").value;
         var ingredient_URLs = [];
@@ -13,7 +15,7 @@ $(document).ready(function () {
             ingredient_URLs.push(URL + input_split[i]);
         }
 
-        // Get Meals from API
+        // Get meals from API
         var total_meals = [];
         var meal_invalid = false;
         for (var i = 0; i < ingredient_URLs.length; i++) {
@@ -34,16 +36,15 @@ $(document).ready(function () {
             total_meals.push(meal_names);
         }
 
-
         if (total_meals.length > 0 && !meal_invalid) {
-            // Outputting information to HTML
-            // Find Common Meals
+            // Find common meals
             var result = total_meals.shift().filter(function(v) {
                 return total_meals.every(function(a) {
                     return a.indexOf(v) !== -1;
                 });
             });
             if (result.length > 0) {
+                // Outputting information to HTML
                 var output = "";
                 for (var i = 0; i < input_split.length; i++) {
                     if (i == input_split.length - 1) {
@@ -55,7 +56,6 @@ $(document).ready(function () {
                 }
                 output += ":";
                 $('#input_message').text(output);
-
                 $(document).ready(function() {
                     for (var i = 0; i < result.length; i++) {
                         var output = '<li class="list-group-item">' + result[i] + '</li>';
@@ -63,10 +63,12 @@ $(document).ready(function () {
                     }
                 });
             } else {
+                // Display error message when no common dishes are found
                 $('#errorMessage').text("No dishes use all ingredients inputted. Please enter new set of ingredients.");
                 $('#dish_list').empty();
             }
         } else {
+            // Display error message when an ingredient field is invalid
             $('#errorMessage').text("No dishes use all ingredients inputted. Please enter new set of ingredients.");
             $('#dish_list').empty();
         }
