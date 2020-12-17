@@ -14,14 +14,15 @@ $(document).ready(function () {
 
         // Get Meals from API
         var total_meals = [];
+        var meal_invalid = false;
         for (var i = 0; i < ingredient_URLs.length; i++) {
-            console.log("HERE");
             var xhReq = new XMLHttpRequest();
             xhReq.open("GET", ingredient_URLs[i], false);
             xhReq.send(null);
             var website_data = JSON.parse(xhReq.responseText);
             var meals = website_data['meals'];
             if (meals == null) {
+                meal_invalid = true;
                 continue;
             }
             var meal_names = [];
@@ -32,7 +33,7 @@ $(document).ready(function () {
             total_meals.push(meal_names);
         }
 
-        if (total_meals.length > 0) {
+        if (total_meals.length > 0 && !meal_invalid) {
             // Find Common Meals
             var result = total_meals.shift().filter(function(v) {
                 return total_meals.every(function(a) {
