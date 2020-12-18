@@ -10,6 +10,7 @@ $(document).ready(function () {
         var dishes;
 
         // Collecting ingredients of dish name from API
+        // XML Code: https://stackoverflow.com/questions/3038901/how-to-get-the-response-of-xmlhttprequest
         var xhReq = new XMLHttpRequest();
         xhReq.open("GET", input_URL, false);
         xhReq.send(null);

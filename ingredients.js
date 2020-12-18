@@ -21,6 +21,7 @@ $(document).ready(function () {
         var total_meals = [];
         var meal_invalid = false;
         for (var i = 0; i < ingredient_URLs.length; i++) {
+            // XML Code: https://stackoverflow.com/questions/3038901/how-to-get-the-response-of-xmlhttprequest
             var xhReq = new XMLHttpRequest();
             xhReq.open("GET", ingredient_URLs[i], false);
             xhReq.send(null);
