@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#findDishes").click(function () {
         $('#errorMessage').text("");
         var input = document.getElementById("dishInput").value;
+        var input_copy = input;
         input = input.replace(" ", "%20");
         var input_URL = URL + input;
         var dishes;
@@ -80,6 +81,7 @@ $(document).ready(function () {
                   }
             }
             vegaEmbed("#vis", vlSpec);
+            $('#results').text("Of the " + dishes.length + " dishes containing the word " + input_copy + ", these were the most popular ingredients used across all these dishes.");
             
         } else {
             // Display error message if dish does not exist in database
