@@ -59,7 +59,9 @@ $(document).ready(function () {
                 $(ingredient_tags[i]).text(sorted_ingredients[i][0]);
                 $(count_tags[i]).text(sorted_ingredients[i][1]);
             }
-
+            
+            // Create Vega-lite visuals
+            // https://vega.github.io/vega-lite/tutorials/explore.html
             var vlSpec = {
                 $schema: "https://vega.github.io/schema/vega-lite/v4.0.0-beta.8.json",
                 width: 450,
